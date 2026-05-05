@@ -6,6 +6,7 @@ type Props = {
   fill?: string
   strokeWidth?: number
   className?: string
+  responsive?: boolean
 }
 
 export function Sparkline({
@@ -16,6 +17,7 @@ export function Sparkline({
   fill = 'rgba(255, 130, 0, 0.18)',
   strokeWidth = 1.5,
   className,
+  responsive,
 }: Props) {
   if (data.length === 0) return null
   const min = Math.min(...data)
@@ -38,8 +40,9 @@ export function Sparkline({
   return (
     <svg
       viewBox={`0 0 ${width} ${height}`}
-      width={width}
-      height={height}
+      width={responsive ? '100%' : width}
+      height={responsive ? height : height}
+      preserveAspectRatio={responsive ? 'none' : undefined}
       className={className}
       aria-hidden
     >

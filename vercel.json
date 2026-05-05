@@ -8,5 +8,14 @@
   "rewrites": [
     { "source": "/", "destination": "/_shell.html" },
     { "source": "/:path*", "destination": "/_shell.html" }
+  ],
+  "headers": [
+    {
+      "source": "/_shell.html",
+      "headers": [
+        { "key": "Content-Type", "value": "text/html; charset=utf-8" },
+        { "key": "Content-Language", "value": "fr" }
+      ]
+    }
   ]
 }

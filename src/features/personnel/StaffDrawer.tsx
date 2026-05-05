@@ -3,7 +3,7 @@ import { Drawer } from '#/components/ui/Drawer'
 import { Pill } from '#/components/ui/Pill'
 import { CodeTag } from '#/components/ui/CodeTag'
 import { Avatar } from '#/components/ui/Avatar'
-import { useDispatch, useProject } from '#/lib/store/hooks'
+import { useDispatch, useProject, useStaff } from '#/lib/store/hooks'
 import { useCan } from '#/lib/store/useCan'
 import { useToast } from '#/components/ui/toast/ToastProvider'
 import { presenceLabel, presenceTone } from '#/lib/labels'
@@ -12,10 +12,13 @@ import type { Presence, Staff } from '#/lib/types'
 
 const PRESENCE: Presence[] = ['present', 'absent_justifie', 'conge', 'mission', 'maladie']
 
-export function StaffDrawer({ s, onClose }: { s: Staff | null; onClose: () => void }) {
+export function StaffDrawer({ s: passed, onClose }: { s: Staff | null; onClose: () => void }) {
   const dispatch = useDispatch()
   const toast = useToast()
   const canPresence = useCan('staff:presence')
+  // Re-read the live record so prop changes from the store reflect here
+  const live = useStaff().find((x) => x.id === passed?.id) ?? null
+  const s = live ?? passed
   const project = useProject(s?.projectId ?? undefined)
 
   if (!s) return null

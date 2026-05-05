@@ -75,6 +75,13 @@ export function navVisibility(user: User | null, key: NavKey): 'full' | 'read' |
     case 'personnel':
       if (user.role === 'pm' || user.role === 'dom') return 'read'
       return 'full'
+    case 'pointage':
+      // Pointage écran rapide — only roles with staff:presence can act; hidden otherwise
+      if (user.role === 'pm') return 'hidden'
+      return 'full'
+    case 'audit':
+      // Audit log — DG full, others see read-only history
+      return user.role === 'dg' ? 'full' : 'read'
     default:
       return 'hidden'
   }
@@ -86,5 +93,7 @@ export type NavKey =
   | 'validation'
   | 'engins'
   | 'personnel'
+  | 'pointage'
+  | 'audit'
   | 'reporting'
   | 'notifications'

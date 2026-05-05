@@ -21,6 +21,7 @@ export function PresenceSummary() {
         </h3>
       </header>
       <Donut
+        layout="col"
         size={160}
         thickness={20}
         centerLabel={`${presenceRatio} %`}

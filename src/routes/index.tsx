@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { ActiveProjects } from '#/features/dashboard/ActiveProjects'
 import { ActivityFeed } from '#/features/dashboard/ActivityFeed'
+import { CriticalRibbon } from '#/features/dashboard/CriticalRibbon'
 import { FleetSnapshot } from '#/features/dashboard/FleetSnapshot'
 import { HeroPanel } from '#/features/dashboard/HeroPanel'
 import { KpiRow } from '#/features/dashboard/KpiRow'
@@ -20,6 +21,7 @@ function Dashboard() {
   return (
     <main className="flex flex-col gap-5 pb-6">
       <HeroPanel />
+      <CriticalRibbon />
       <KpiRow />
 
       {(preset.showActiveProjects || preset.showFleetSnapshot) && (

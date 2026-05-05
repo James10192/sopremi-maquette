@@ -6,17 +6,33 @@ type Props = {
   thickness?: number
   centerLabel?: string
   centerSublabel?: string
+  /** 'row' (default) for wide containers, 'col' to stack legend under the donut for narrow ones */
+  layout?: 'row' | 'col'
 }
 
-export function Donut({ data, size = 160, thickness = 22, centerLabel, centerSublabel }: Props) {
+export function Donut({
+  data,
+  size = 160,
+  thickness = 22,
+  centerLabel,
+  centerSublabel,
+  layout = 'row',
+}: Props) {
   const total = data.reduce((s, d) => s + d.value, 0) || 1
   const r = (size - thickness) / 2
   const c = 2 * Math.PI * r
   let offset = 0
 
+  const wrapperCls =
+    layout === 'col' ? 'flex flex-col items-center gap-4' : 'flex items-center gap-5'
+  const legendCls =
+    layout === 'col'
+      ? 'grid w-full grid-cols-1 gap-1.5 text-sm sm:grid-cols-2'
+      : 'flex flex-col gap-1.5 text-sm'
+
   return (
-    <div className="flex items-center gap-5">
-      <div className="relative inline-flex items-center justify-center" style={{ width: size, height: size }}>
+    <div className={wrapperCls}>
+      <div className="relative inline-flex shrink-0 items-center justify-center" style={{ width: size, height: size }}>
         <svg width={size} height={size} className="-rotate-90">
           <circle
             cx={size / 2}
@@ -60,12 +76,15 @@ export function Donut({ data, size = 160, thickness = 22, centerLabel, centerSub
           )}
         </div>
       </div>
-      <ul className="flex flex-col gap-1.5 text-sm">
+      <ul className={legendCls}>
         {data.map((slice) => (
-          <li key={slice.label} className="flex items-center gap-2 text-[var(--text-soft)]">
-            <span className="h-2 w-2 rounded-full" style={{ background: slice.color }} />
-            <span className="text-[12.5px]">{slice.label}</span>
-            <span className="ml-auto font-tech tabular text-[12.5px] text-[var(--text-muted)]">
+          <li
+            key={slice.label}
+            className="flex items-center gap-2 text-[var(--text-soft)]"
+          >
+            <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: slice.color }} />
+            <span className="truncate text-[12px]">{slice.label}</span>
+            <span className="font-tech tabular ml-auto pl-1 text-[12px] text-[var(--text-muted)]">
               {slice.value}
             </span>
           </li>

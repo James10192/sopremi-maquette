@@ -41,7 +41,7 @@ export function TickerStrip() {
   return (
     <div className="grid divide-x divide-[var(--line)] border-t border-[var(--line)] sm:grid-cols-4">
       {ticks.map((t) => (
-        <div key={t.label} className="flex flex-col gap-0.5 px-5 py-3.5 first:pl-0">
+        <div key={t.label} className="flex flex-col gap-0.5 px-5 py-3.5">
           <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--text-muted)]">
             {t.label}
           </span>

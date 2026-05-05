@@ -56,25 +56,40 @@ function delta(trend?: number[]): { sign: '▲' | '▼' | '·'; mag: string; ton
     : { sign: '▼', mag: pct >= 1 ? `${pct.toFixed(1)}%` : `${diff}`, tone: 'danger' }
 }
 
+// Auto-size the value font based on string length so long values like
+// "6,64 Mds FCFA" don't wrap and short ones like "5" stay impactful.
+function valueSizeClass(value: string): string {
+  const len = value.length
+  if (len <= 4) return 'text-[2.4rem]'
+  if (len <= 8) return 'text-[1.85rem]'
+  if (len <= 12) return 'text-[1.45rem]'
+  return 'text-[1.2rem]'
+}
+
 export function KpiCard({ label, value, detail, icon: Icon, tone = 'ember', trend }: Props) {
   const d = delta(trend)
   return (
-    <article className="group surface-soft relative flex flex-col rounded-xl">
-      <div className="flex items-start justify-between gap-3 px-4 pt-4">
-        <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--text-muted)]">
+    <article className="surface-soft relative flex min-h-[152px] flex-col rounded-xl">
+      <div className="flex items-start justify-between gap-3 px-4 pt-3.5">
+        <span className="truncate text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--text-muted)]">
           {label}
         </span>
-        <Icon className={`h-3.5 w-3.5 ${TONE_TEXT[tone]} opacity-70`} />
+        <Icon className={`h-3.5 w-3.5 shrink-0 ${TONE_TEXT[tone]} opacity-70`} />
       </div>
 
-      <div className="flex items-baseline gap-3 px-4 pb-1 pt-2">
-        <span className="font-tech tabular text-[2.4rem] font-semibold leading-none tracking-[-0.02em] text-[var(--text)]">
+      <div className="flex flex-1 flex-col justify-center gap-1 px-4 py-2.5">
+        <span
+          className={`font-tech tabular truncate font-semibold leading-[1.05] tracking-[-0.02em] text-[var(--text)] ${valueSizeClass(value)}`}
+          title={value}
+        >
           {value}
         </span>
-        {trend && (
-          <span className={`font-tech tabular inline-flex items-baseline gap-0.5 text-[11px] font-semibold ${TONE_TEXT[d.tone]}`}>
-            {d.sign}
-            <span>{d.mag}</span>
+        {trend && d.mag && (
+          <span
+            className={`font-tech tabular inline-flex items-baseline gap-1 text-[10.5px] font-semibold uppercase tracking-[0.10em] ${TONE_TEXT[d.tone]}`}
+          >
+            {d.sign} <span>{d.mag}</span>
+            <span className="text-[var(--text-faint)]">vs J-1</span>
           </span>
         )}
       </div>

@@ -1,7 +1,9 @@
 import {
   BarChart3,
   Bell,
+  ClipboardCheck,
   HardHat,
+  History,
   LayoutDashboard,
   MapPinned,
   ShieldCheck,
@@ -30,6 +32,7 @@ export const NAV_GROUPS: NavGroup[] = [
       { to: '/', label: 'Cockpit', icon: LayoutDashboard, match: 'exact', key: 'cockpit' },
       { to: '/projets', label: 'Projets', icon: MapPinned, match: 'prefix', key: 'projects' },
       { to: '/validation', label: 'Validation DG', icon: ShieldCheck, match: 'prefix', key: 'validation' },
+      { to: '/audit', label: 'Audit & historique', icon: History, match: 'prefix', key: 'audit' },
     ],
   },
   {
@@ -37,6 +40,7 @@ export const NAV_GROUPS: NavGroup[] = [
     items: [
       { to: '/ressources/engins', label: 'Flotte', icon: Truck, match: 'prefix', key: 'engins' },
       { to: '/ressources/personnel', label: 'Personnel', icon: HardHat, match: 'prefix', key: 'personnel' },
+      { to: '/ressources/pointage', label: 'Pointage rapide', icon: ClipboardCheck, match: 'prefix', key: 'pointage' },
     ],
   },
   {

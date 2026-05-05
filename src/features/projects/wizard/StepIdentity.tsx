@@ -2,6 +2,7 @@ import { Select } from '#/components/ui/Select'
 import type { Risk, Site, ProjectType } from '#/lib/types'
 import type { Draft } from './types'
 import { SITES, TYPES } from './types'
+import { TemplatePicker } from './TemplatePicker'
 
 const RISK_OPTIONS = [
   { value: 'faible' as const, label: 'Faible', hint: 'aucun aléa identifié' },
@@ -17,6 +18,8 @@ export function StepIdentity({
   onChange: (patch: Partial<Draft>) => void
 }) {
   return (
+    <div className="flex flex-col gap-5">
+      <TemplatePicker onApply={onChange} />
     <div className="grid gap-4 sm:grid-cols-2">
       <label className="sm:col-span-2">
         <span className="label">Nom du projet</span>
@@ -90,6 +93,7 @@ export function StepIdentity({
           onChange={(e) => onChange({ endDate: e.target.value })}
         />
       </label>
+    </div>
     </div>
   )
 }

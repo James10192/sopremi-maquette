@@ -13,16 +13,13 @@ export function BarChart({ data, height = 180, barColor = 'var(--ember)', showVa
   return (
     <div className={className}>
       <div className="relative" style={{ height }}>
-        <div className="absolute inset-0 flex items-end gap-2">
+        <div className="flex h-full items-stretch gap-2">
           {data.map((bar, i) => {
-            const h = (bar.value / max) * 100
+            const h = Math.max(2, (bar.value / max) * 100)
             return (
-              <div key={i} className="flex flex-1 flex-col items-center justify-end gap-2">
-                {showValues && (
-                  <span className="font-tech tabular text-[10.5px] text-[var(--text-muted)]">{bar.value}</span>
-                )}
+              <div key={i} className="relative flex h-full flex-1">
                 <div
-                  className="w-full rounded-t-md"
+                  className="absolute bottom-0 left-0 right-0 rounded-t-md"
                   style={{
                     background: bar.color ?? barColor,
                     height: `${h}%`,
@@ -31,11 +28,19 @@ export function BarChart({ data, height = 180, barColor = 'var(--ember)', showVa
                     animationDelay: `${i * 40}ms`,
                   }}
                 />
+                {showValues && (
+                  <span
+                    className="font-tech tabular pointer-events-none absolute left-0 right-0 -translate-y-1.5 text-center text-[10.5px] text-[var(--text-muted)]"
+                    style={{ bottom: `${h}%` }}
+                  >
+                    {bar.value}
+                  </span>
+                )}
               </div>
             )
           })}
         </div>
-        <div className="absolute inset-x-0 bottom-0 h-px bg-[var(--line)]" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-[var(--line)]" />
       </div>
       <div className="mt-2 flex gap-2">
         {data.map((b) => (

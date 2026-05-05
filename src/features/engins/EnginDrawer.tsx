@@ -4,7 +4,7 @@ import { Drawer } from '#/components/ui/Drawer'
 import { Pill } from '#/components/ui/Pill'
 import { CodeTag } from '#/components/ui/CodeTag'
 import { Sparkline } from '#/components/ui/Sparkline'
-import { useDispatch, useProject, useUserById } from '#/lib/store/hooks'
+import { useDispatch, useEngins, useProject, useUserById } from '#/lib/store/hooks'
 import { useCan } from '#/lib/store/useCan'
 import { useStaff } from '#/lib/store/hooks'
 import { useToast } from '#/components/ui/toast/ToastProvider'
@@ -14,10 +14,13 @@ import type { Engin, EnginState } from '#/lib/types'
 
 const STATES: EnginState[] = ['disponible', 'affecte', 'maintenance', 'panne']
 
-export function EnginDrawer({ engin, onClose }: { engin: Engin | null; onClose: () => void }) {
+export function EnginDrawer({ engin: passed, onClose }: { engin: Engin | null; onClose: () => void }) {
   const dispatch = useDispatch()
   const toast = useToast()
   const canChangeState = useCan('engin:state-change')
+  // Re-read from the live store so changes after open reflect immediately
+  const live = useEngins().find((e) => e.id === passed?.id) ?? null
+  const engin = live ?? passed
   const project = useProject(engin?.projectId ?? undefined)
   const operator = useStaff().find((s) => s.id === engin?.operatorId)
   const operatorUser = useUserById(operator?.id ?? null)

@@ -15,10 +15,12 @@ import { Route as ReportingRouteImport } from './routes/reporting'
 import { Route as ProjetsRouteImport } from './routes/projets'
 import { Route as NotificationsRouteImport } from './routes/notifications'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as AuditRouteImport } from './routes/audit'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as RessourcesIndexRouteImport } from './routes/ressources.index'
 import { Route as ProjetsIndexRouteImport } from './routes/projets.index'
+import { Route as RessourcesPointageRouteImport } from './routes/ressources.pointage'
 import { Route as RessourcesPersonnelRouteImport } from './routes/ressources.personnel'
 import { Route as RessourcesEnginsRouteImport } from './routes/ressources.engins'
 import { Route as ProjetsNouveauRouteImport } from './routes/projets.nouveau'
@@ -54,6 +56,11 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuditRoute = AuditRouteImport.update({
+  id: '/audit',
+  path: '/audit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -73,6 +80,11 @@ const ProjetsIndexRoute = ProjetsIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => ProjetsRoute,
+} as any)
+const RessourcesPointageRoute = RessourcesPointageRouteImport.update({
+  id: '/pointage',
+  path: '/pointage',
+  getParentRoute: () => RessourcesRoute,
 } as any)
 const RessourcesPersonnelRoute = RessourcesPersonnelRouteImport.update({
   id: '/personnel',
@@ -98,6 +110,7 @@ const ProjetsIdRoute = ProjetsIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/audit': typeof AuditRoute
   '/login': typeof LoginRoute
   '/notifications': typeof NotificationsRoute
   '/projets': typeof ProjetsRouteWithChildren
@@ -108,12 +121,14 @@ export interface FileRoutesByFullPath {
   '/projets/nouveau': typeof ProjetsNouveauRoute
   '/ressources/engins': typeof RessourcesEnginsRoute
   '/ressources/personnel': typeof RessourcesPersonnelRoute
+  '/ressources/pointage': typeof RessourcesPointageRoute
   '/projets/': typeof ProjetsIndexRoute
   '/ressources/': typeof RessourcesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/audit': typeof AuditRoute
   '/login': typeof LoginRoute
   '/notifications': typeof NotificationsRoute
   '/reporting': typeof ReportingRoute
@@ -122,6 +137,7 @@ export interface FileRoutesByTo {
   '/projets/nouveau': typeof ProjetsNouveauRoute
   '/ressources/engins': typeof RessourcesEnginsRoute
   '/ressources/personnel': typeof RessourcesPersonnelRoute
+  '/ressources/pointage': typeof RessourcesPointageRoute
   '/projets': typeof ProjetsIndexRoute
   '/ressources': typeof RessourcesIndexRoute
 }
@@ -129,6 +145,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/audit': typeof AuditRoute
   '/login': typeof LoginRoute
   '/notifications': typeof NotificationsRoute
   '/projets': typeof ProjetsRouteWithChildren
@@ -139,6 +156,7 @@ export interface FileRoutesById {
   '/projets/nouveau': typeof ProjetsNouveauRoute
   '/ressources/engins': typeof RessourcesEnginsRoute
   '/ressources/personnel': typeof RessourcesPersonnelRoute
+  '/ressources/pointage': typeof RessourcesPointageRoute
   '/projets/': typeof ProjetsIndexRoute
   '/ressources/': typeof RessourcesIndexRoute
 }
@@ -147,6 +165,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/audit'
     | '/login'
     | '/notifications'
     | '/projets'
@@ -157,12 +176,14 @@ export interface FileRouteTypes {
     | '/projets/nouveau'
     | '/ressources/engins'
     | '/ressources/personnel'
+    | '/ressources/pointage'
     | '/projets/'
     | '/ressources/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/audit'
     | '/login'
     | '/notifications'
     | '/reporting'
@@ -171,12 +192,14 @@ export interface FileRouteTypes {
     | '/projets/nouveau'
     | '/ressources/engins'
     | '/ressources/personnel'
+    | '/ressources/pointage'
     | '/projets'
     | '/ressources'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/audit'
     | '/login'
     | '/notifications'
     | '/projets'
@@ -187,6 +210,7 @@ export interface FileRouteTypes {
     | '/projets/nouveau'
     | '/ressources/engins'
     | '/ressources/personnel'
+    | '/ressources/pointage'
     | '/projets/'
     | '/ressources/'
   fileRoutesById: FileRoutesById
@@ -194,6 +218,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AuditRoute: typeof AuditRoute
   LoginRoute: typeof LoginRoute
   NotificationsRoute: typeof NotificationsRoute
   ProjetsRoute: typeof ProjetsRouteWithChildren
@@ -246,6 +271,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/audit': {
+      id: '/audit'
+      path: '/audit'
+      fullPath: '/audit'
+      preLoaderRoute: typeof AuditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -273,6 +305,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/projets/'
       preLoaderRoute: typeof ProjetsIndexRouteImport
       parentRoute: typeof ProjetsRoute
+    }
+    '/ressources/pointage': {
+      id: '/ressources/pointage'
+      path: '/pointage'
+      fullPath: '/ressources/pointage'
+      preLoaderRoute: typeof RessourcesPointageRouteImport
+      parentRoute: typeof RessourcesRoute
     }
     '/ressources/personnel': {
       id: '/ressources/personnel'
@@ -323,12 +362,14 @@ const ProjetsRouteWithChildren =
 interface RessourcesRouteChildren {
   RessourcesEnginsRoute: typeof RessourcesEnginsRoute
   RessourcesPersonnelRoute: typeof RessourcesPersonnelRoute
+  RessourcesPointageRoute: typeof RessourcesPointageRoute
   RessourcesIndexRoute: typeof RessourcesIndexRoute
 }
 
 const RessourcesRouteChildren: RessourcesRouteChildren = {
   RessourcesEnginsRoute: RessourcesEnginsRoute,
   RessourcesPersonnelRoute: RessourcesPersonnelRoute,
+  RessourcesPointageRoute: RessourcesPointageRoute,
   RessourcesIndexRoute: RessourcesIndexRoute,
 }
 
@@ -339,6 +380,7 @@ const RessourcesRouteWithChildren = RessourcesRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AuditRoute: AuditRoute,
   LoginRoute: LoginRoute,
   NotificationsRoute: NotificationsRoute,
   ProjetsRoute: ProjetsRouteWithChildren,

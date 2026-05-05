@@ -1,0 +1,61 @@
+* { box-sizing: border-box; }
+
+html, body, #app { min-height: 100%; }
+
+html {
+  scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+  scrollbar-width: thin;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-sans);
+  background:
+    radial-gradient(1200px 700px at 12% -8%, rgba(255, 130, 0, 0.10), transparent 60%),
+    radial-gradient(900px 600px at 92% 6%, rgba(29, 177, 187, 0.10), transparent 58%),
+    radial-gradient(700px 500px at 50% 105%, rgba(255, 130, 0, 0.06), transparent 60%),
+    linear-gradient(180deg, #04070b 0%, #050a10 50%, #04070b 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.32;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420'><g fill='none' stroke='%23ffffff' stroke-opacity='0.045' stroke-width='1'><path d='M-20 80 Q 80 30 200 70 T 440 90'/><path d='M-20 130 Q 90 80 220 120 T 440 150'/><path d='M-20 190 Q 110 140 240 180 T 440 210'/><path d='M-20 260 Q 130 200 260 250 T 440 280'/><path d='M-20 330 Q 150 260 280 320 T 440 360'/><circle cx='110' cy='150' r='3'/><circle cx='280' cy='240' r='3'/><circle cx='340' cy='90' r='2'/></g></svg>");
+  background-size: 540px 540px;
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 78%);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.10;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(180deg, transparent 0%, black 25%, black 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 25%, black 70%, transparent 100%);
+}
+
+a { color: var(--ember); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--ember-bright); }
+
+::selection { background: rgba(255, 130, 0, 0.30); color: #fff; }
+
+button, a {
+  transition: background-color 160ms ease, border-color 160ms ease,
+    color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}

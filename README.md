@@ -1,193 +1,155 @@
-Welcome to your new TanStack Start app! 
+# SOPREMI Maquette
 
-# Getting Started
+Application web de démonstration pour SOPREMI, pensée comme une maquette de présentation et non comme un produit connecté à la production.
 
-To run this application:
+L'objectif du projet est de montrer à l'employeur à quoi pourrait ressembler une future application de pilotage interne pour l'entreprise:
+
+- suivi des projets de prestation minière
+- supervision des équipes et des équipements
+- validation des actions sensibles par la direction générale
+- calcul visuel de la rentabilité
+- tableau de bord de reporting
+
+Les données affichées dans l'interface sont fictives. Elles servent uniquement à illustrer le comportement attendu du futur produit.
+
+## Contexte
+
+Le cahier des charges transmis décrit une application de gestion orientée exploitation minière avec plusieurs besoins métiers:
+
+- création et supervision de projets
+- enregistrement du personnel et des équipements
+- suivi de la présence, de l'absence et de la productivité
+- gestion des affectations chantier / engin / chauffeur
+- notification et validation par la direction générale
+- consolidation des indicateurs de performance
+
+Cette maquette reprend ces axes pour donner une vision claire du produit final, sans complexité backend inutile au stade de la présentation.
+
+## Ce que montre la maquette
+
+La page d'accueil simule un cockpit opérationnel avec:
+
+- un bandeau de marque SOPREMI basé sur le logo officiel
+- des indicateurs globaux de supervision
+- des cartes de projets avec progression, rentabilité et niveau de risque
+- une section validation DG
+- une vue du personnel et des équipements
+- un journal de reporting et de notifications
+- une chaîne de décision qui illustre le workflow métier
+
+L'interface est volontairement dense, car le besoin métier est celui d'un outil de gestion et de contrôle, pas d'une landing page marketing.
+
+## Stack technique
+
+- [TanStack Start](https://tanstack.com/start)
+- [TanStack Router](https://tanstack.com/router)
+- React 19
+- Vite
+- Tailwind CSS 4
+- `lucide-react` pour les icônes
+- `pnpm` comme gestionnaire de paquets
+
+La maquette est prête pour évoluer ensuite vers une vraie couche temps réel avec Convex, mais ce n'est pas encore branché dans cette version.
+
+## Branding SOPREMI
+
+Le projet utilise des assets publics récupérés sur le site officiel SOPREMI:
+
+- logo principal
+- icône de navigateur
+
+La palette visuelle reprend les tons sombres et les accents orange / teal observés sur le site officiel afin de garder une cohérence avec l'identité visuelle de l'entreprise.
+
+## Structure du projet
+
+- `src/routes/index.tsx` : page principale de la maquette
+- `src/routes/about.tsx` : page de présentation du prototype
+- `src/routes/__root.tsx` : structure HTML globale, métadonnées et shell de l'application
+- `src/components/Header.tsx` : bandeau supérieur et navigation
+- `src/components/Footer.tsx` : pied de page
+- `src/components/MockDashboard.tsx` : contenu principal de la maquette
+- `src/styles.css` : thème visuel global
+- `public/brand/` : assets SOPREMI utilisés dans l'interface
+
+## Fonctionnalités simulées
+
+La maquette illustre notamment:
+
+- authentification et séparation des rôles
+- validation des projets par la direction générale
+- suivi des projets et de leur progression
+- état des équipements
+- présence du personnel
+- indicateurs de rentabilité
+- alertes et notifications de supervision
+
+Ces éléments sont présentés en mode visuel. Ils ne sont pas encore reliés à une base de données ni à un moteur de calcul métier.
+
+## Lancement en local
+
+Prérequis:
+
+- Node.js installé
+- `pnpm` activé via Corepack
+
+Commande d'installation:
 
 ```bash
 pnpm install
+```
+
+Commande de développement:
+
+```bash
 pnpm dev
 ```
 
-# Building For Production
+Par défaut, l'application est disponible sur:
 
-To build this application for production:
+- `http://localhost:3000`
+- `http://[::1]:3000`
+
+## Build de production
+
+Pour vérifier que le projet compile correctement:
 
 ```bash
 pnpm build
 ```
 
-## Testing
+## Test
 
-This project uses [Vitest](https://vitest.dev/) for testing. You can run the tests with:
+Les tests sont prévus via Vitest:
 
 ```bash
 pnpm test
 ```
 
-## Styling
+À ce stade, la maquette est surtout validée visuellement et par build. Les tests métier seront plus utiles quand la couche de données et les règles de gestion seront ajoutées.
 
-This project uses [Tailwind CSS](https://tailwindcss.com/) for styling.
+## État actuel
 
-### Removing Tailwind CSS
+Cette version est volontairement une maquette:
 
-If you prefer not to use Tailwind CSS:
+- pas de backend Convex branché
+- pas de données persistantes
+- pas de workflow réel de validation
+- pas de calcul métier final
 
-1. Remove the demo pages in `src/routes/demo/`
-2. Replace the Tailwind import in `src/styles.css` with your own styles
-3. Remove `tailwindcss()` from the plugins array in `vite.config.ts`
-4. Uninstall the packages: `pnpm add @tailwindcss/vite tailwindcss --dev`
+L'objectif est uniquement de montrer la direction produit, le style d'interface et la logique des écrans.
 
+## Évolution prévue
 
+Les prochaines étapes naturelles seraient:
 
-## Routing
+- brancher Convex pour le temps réel
+- ajouter l'authentification
+- relier les entités métier à une vraie base de données
+- ajouter la création et la modification des projets
+- implémenter les validations DG
+- ajouter le pointage et les calculs de présence / productivité
+- générer des rapports exploitables
 
-This project uses [TanStack Router](https://tanstack.com/router) with file-based routing. Routes are managed as files in `src/routes`.
+## Remarque
 
-### Adding A Route
-
-To add a new route to your application just add a new file in the `./src/routes` directory.
-
-TanStack will automatically generate the content of the route file for you.
-
-Now that you have two routes you can use a `Link` component to navigate between them.
-
-### Adding Links
-
-To use SPA (Single Page Application) navigation you will need to import the `Link` component from `@tanstack/react-router`.
-
-```tsx
-import { Link } from "@tanstack/react-router";
-```
-
-Then anywhere in your JSX you can use it like so:
-
-```tsx
-<Link to="/about">About</Link>
-```
-
-This will create a link that will navigate to the `/about` route.
-
-More information on the `Link` component can be found in the [Link documentation](https://tanstack.com/router/v1/docs/framework/react/api/router/linkComponent).
-
-### Using A Layout
-
-In the File Based Routing setup the layout is located in `src/routes/__root.tsx`. Anything you add to the root route will appear in all the routes. The route content will appear in the JSX where you render `{children}` in the `shellComponent`.
-
-Here is an example layout that includes a header:
-
-```tsx
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
-
-export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { title: 'My App' },
-    ],
-  }),
-  shellComponent: ({ children }) => (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        <header>
-          <nav>
-            <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
-          </nav>
-        </header>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  ),
-})
-```
-
-More information on layouts can be found in the [Layouts documentation](https://tanstack.com/router/latest/docs/framework/react/guide/routing-concepts#layouts).
-
-## Server Functions
-
-TanStack Start provides server functions that allow you to write server-side code that seamlessly integrates with your client components.
-
-```tsx
-import { createServerFn } from '@tanstack/react-start'
-
-const getServerTime = createServerFn({
-  method: 'GET',
-}).handler(async () => {
-  return new Date().toISOString()
-})
-
-// Use in a component
-function MyComponent() {
-  const [time, setTime] = useState('')
-  
-  useEffect(() => {
-    getServerTime().then(setTime)
-  }, [])
-  
-  return <div>Server time: {time}</div>
-}
-```
-
-## API Routes
-
-You can create API routes by using the `server` property in your route definitions:
-
-```tsx
-import { createFileRoute } from '@tanstack/react-router'
-import { json } from '@tanstack/react-start'
-
-export const Route = createFileRoute('/api/hello')({
-  server: {
-    handlers: {
-      GET: () => json({ message: 'Hello, World!' }),
-    },
-  },
-})
-```
-
-## Data Fetching
-
-There are multiple ways to fetch data in your application. You can use TanStack Query to fetch data from a server. But you can also use the `loader` functionality built into TanStack Router to load the data for a route before it's rendered.
-
-For example:
-
-```tsx
-import { createFileRoute } from '@tanstack/react-router'
-
-export const Route = createFileRoute('/people')({
-  loader: async () => {
-    const response = await fetch('https://swapi.dev/api/people')
-    return response.json()
-  },
-  component: PeopleComponent,
-})
-
-function PeopleComponent() {
-  const data = Route.useLoaderData()
-  return (
-    <ul>
-      {data.results.map((person) => (
-        <li key={person.name}>{person.name}</li>
-      ))}
-    </ul>
-  )
-}
-```
-
-Loaders simplify your data fetching logic dramatically. Check out more information in the [Loader documentation](https://tanstack.com/router/latest/docs/framework/react/guide/data-loading#loader-parameters).
-
-# Demo files
-
-Files prefixed with `demo` can be safely deleted. They are there to provide a starting point for you to play around with the features you've installed.
-
-# Learn More
-
-You can learn more about all of the offerings from TanStack in the [TanStack documentation](https://tanstack.com).
-
-For TanStack Start specific documentation, visit [TanStack Start](https://tanstack.com/start).
+Le nom de la maquette peut être adapté si l'entreprise veut présenter une version plus formelle, plus commerciale ou plus technique. Le socle actuel est déjà prêt pour recevoir cette évolution.

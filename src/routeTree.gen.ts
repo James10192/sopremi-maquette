@@ -9,9 +9,51 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ValidationRouteImport } from './routes/validation'
+import { Route as RessourcesRouteImport } from './routes/ressources'
+import { Route as ReportingRouteImport } from './routes/reporting'
+import { Route as ProjetsRouteImport } from './routes/projets'
+import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as RessourcesIndexRouteImport } from './routes/ressources.index'
+import { Route as ProjetsIndexRouteImport } from './routes/projets.index'
+import { Route as RessourcesPersonnelRouteImport } from './routes/ressources.personnel'
+import { Route as RessourcesEnginsRouteImport } from './routes/ressources.engins'
+import { Route as ProjetsNouveauRouteImport } from './routes/projets.nouveau'
+import { Route as ProjetsIdRouteImport } from './routes/projets.$id'
 
+const ValidationRoute = ValidationRouteImport.update({
+  id: '/validation',
+  path: '/validation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RessourcesRoute = RessourcesRouteImport.update({
+  id: '/ressources',
+  path: '/ressources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportingRoute = ReportingRouteImport.update({
+  id: '/reporting',
+  path: '/reporting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjetsRoute = ProjetsRouteImport.update({
+  id: '/projets',
+  path: '/projets',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -22,35 +64,188 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RessourcesIndexRoute = RessourcesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => RessourcesRoute,
+} as any)
+const ProjetsIndexRoute = ProjetsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ProjetsRoute,
+} as any)
+const RessourcesPersonnelRoute = RessourcesPersonnelRouteImport.update({
+  id: '/personnel',
+  path: '/personnel',
+  getParentRoute: () => RessourcesRoute,
+} as any)
+const RessourcesEnginsRoute = RessourcesEnginsRouteImport.update({
+  id: '/engins',
+  path: '/engins',
+  getParentRoute: () => RessourcesRoute,
+} as any)
+const ProjetsNouveauRoute = ProjetsNouveauRouteImport.update({
+  id: '/nouveau',
+  path: '/nouveau',
+  getParentRoute: () => ProjetsRoute,
+} as any)
+const ProjetsIdRoute = ProjetsIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => ProjetsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/login': typeof LoginRoute
+  '/notifications': typeof NotificationsRoute
+  '/projets': typeof ProjetsRouteWithChildren
+  '/reporting': typeof ReportingRoute
+  '/ressources': typeof RessourcesRouteWithChildren
+  '/validation': typeof ValidationRoute
+  '/projets/$id': typeof ProjetsIdRoute
+  '/projets/nouveau': typeof ProjetsNouveauRoute
+  '/ressources/engins': typeof RessourcesEnginsRoute
+  '/ressources/personnel': typeof RessourcesPersonnelRoute
+  '/projets/': typeof ProjetsIndexRoute
+  '/ressources/': typeof RessourcesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/login': typeof LoginRoute
+  '/notifications': typeof NotificationsRoute
+  '/reporting': typeof ReportingRoute
+  '/validation': typeof ValidationRoute
+  '/projets/$id': typeof ProjetsIdRoute
+  '/projets/nouveau': typeof ProjetsNouveauRoute
+  '/ressources/engins': typeof RessourcesEnginsRoute
+  '/ressources/personnel': typeof RessourcesPersonnelRoute
+  '/projets': typeof ProjetsIndexRoute
+  '/ressources': typeof RessourcesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/login': typeof LoginRoute
+  '/notifications': typeof NotificationsRoute
+  '/projets': typeof ProjetsRouteWithChildren
+  '/reporting': typeof ReportingRoute
+  '/ressources': typeof RessourcesRouteWithChildren
+  '/validation': typeof ValidationRoute
+  '/projets/$id': typeof ProjetsIdRoute
+  '/projets/nouveau': typeof ProjetsNouveauRoute
+  '/ressources/engins': typeof RessourcesEnginsRoute
+  '/ressources/personnel': typeof RessourcesPersonnelRoute
+  '/projets/': typeof ProjetsIndexRoute
+  '/ressources/': typeof RessourcesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/login'
+    | '/notifications'
+    | '/projets'
+    | '/reporting'
+    | '/ressources'
+    | '/validation'
+    | '/projets/$id'
+    | '/projets/nouveau'
+    | '/ressources/engins'
+    | '/ressources/personnel'
+    | '/projets/'
+    | '/ressources/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to:
+    | '/'
+    | '/about'
+    | '/login'
+    | '/notifications'
+    | '/reporting'
+    | '/validation'
+    | '/projets/$id'
+    | '/projets/nouveau'
+    | '/ressources/engins'
+    | '/ressources/personnel'
+    | '/projets'
+    | '/ressources'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/login'
+    | '/notifications'
+    | '/projets'
+    | '/reporting'
+    | '/ressources'
+    | '/validation'
+    | '/projets/$id'
+    | '/projets/nouveau'
+    | '/ressources/engins'
+    | '/ressources/personnel'
+    | '/projets/'
+    | '/ressources/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  LoginRoute: typeof LoginRoute
+  NotificationsRoute: typeof NotificationsRoute
+  ProjetsRoute: typeof ProjetsRouteWithChildren
+  ReportingRoute: typeof ReportingRoute
+  RessourcesRoute: typeof RessourcesRouteWithChildren
+  ValidationRoute: typeof ValidationRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/validation': {
+      id: '/validation'
+      path: '/validation'
+      fullPath: '/validation'
+      preLoaderRoute: typeof ValidationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ressources': {
+      id: '/ressources'
+      path: '/ressources'
+      fullPath: '/ressources'
+      preLoaderRoute: typeof RessourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reporting': {
+      id: '/reporting'
+      path: '/reporting'
+      fullPath: '/reporting'
+      preLoaderRoute: typeof ReportingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projets': {
+      id: '/projets'
+      path: '/projets'
+      fullPath: '/projets'
+      preLoaderRoute: typeof ProjetsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -65,12 +260,91 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ressources/': {
+      id: '/ressources/'
+      path: '/'
+      fullPath: '/ressources/'
+      preLoaderRoute: typeof RessourcesIndexRouteImport
+      parentRoute: typeof RessourcesRoute
+    }
+    '/projets/': {
+      id: '/projets/'
+      path: '/'
+      fullPath: '/projets/'
+      preLoaderRoute: typeof ProjetsIndexRouteImport
+      parentRoute: typeof ProjetsRoute
+    }
+    '/ressources/personnel': {
+      id: '/ressources/personnel'
+      path: '/personnel'
+      fullPath: '/ressources/personnel'
+      preLoaderRoute: typeof RessourcesPersonnelRouteImport
+      parentRoute: typeof RessourcesRoute
+    }
+    '/ressources/engins': {
+      id: '/ressources/engins'
+      path: '/engins'
+      fullPath: '/ressources/engins'
+      preLoaderRoute: typeof RessourcesEnginsRouteImport
+      parentRoute: typeof RessourcesRoute
+    }
+    '/projets/nouveau': {
+      id: '/projets/nouveau'
+      path: '/nouveau'
+      fullPath: '/projets/nouveau'
+      preLoaderRoute: typeof ProjetsNouveauRouteImport
+      parentRoute: typeof ProjetsRoute
+    }
+    '/projets/$id': {
+      id: '/projets/$id'
+      path: '/$id'
+      fullPath: '/projets/$id'
+      preLoaderRoute: typeof ProjetsIdRouteImport
+      parentRoute: typeof ProjetsRoute
+    }
   }
 }
+
+interface ProjetsRouteChildren {
+  ProjetsIdRoute: typeof ProjetsIdRoute
+  ProjetsNouveauRoute: typeof ProjetsNouveauRoute
+  ProjetsIndexRoute: typeof ProjetsIndexRoute
+}
+
+const ProjetsRouteChildren: ProjetsRouteChildren = {
+  ProjetsIdRoute: ProjetsIdRoute,
+  ProjetsNouveauRoute: ProjetsNouveauRoute,
+  ProjetsIndexRoute: ProjetsIndexRoute,
+}
+
+const ProjetsRouteWithChildren =
+  ProjetsRoute._addFileChildren(ProjetsRouteChildren)
+
+interface RessourcesRouteChildren {
+  RessourcesEnginsRoute: typeof RessourcesEnginsRoute
+  RessourcesPersonnelRoute: typeof RessourcesPersonnelRoute
+  RessourcesIndexRoute: typeof RessourcesIndexRoute
+}
+
+const RessourcesRouteChildren: RessourcesRouteChildren = {
+  RessourcesEnginsRoute: RessourcesEnginsRoute,
+  RessourcesPersonnelRoute: RessourcesPersonnelRoute,
+  RessourcesIndexRoute: RessourcesIndexRoute,
+}
+
+const RessourcesRouteWithChildren = RessourcesRoute._addFileChildren(
+  RessourcesRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  LoginRoute: LoginRoute,
+  NotificationsRoute: NotificationsRoute,
+  ProjetsRoute: ProjetsRouteWithChildren,
+  ReportingRoute: ReportingRoute,
+  RessourcesRoute: RessourcesRouteWithChildren,
+  ValidationRoute: ValidationRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,0 +1,56 @@
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-tech: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+:root {
+  color-scheme: dark;
+
+  --bg-base: #04070b;
+  --bg-rise: #0a1219;
+  --bg-elevated: #0f1923;
+  --bg-glass: rgba(15, 25, 35, 0.65);
+  --bg-glass-strong: rgba(10, 18, 25, 0.88);
+
+  --line: rgba(255, 255, 255, 0.06);
+  --line-strong: rgba(255, 255, 255, 0.12);
+  --line-accent: rgba(255, 130, 0, 0.32);
+
+  --text: #f1ede5;
+  --text-soft: #c5cdd3;
+  --text-muted: #7d8a93;
+  --text-faint: #4a5560;
+
+  --ember: #ff8200;
+  --ember-bright: #ffa241;
+  --ember-deep: #c25c2c;
+  --ember-glow: rgba(255, 130, 0, 0.22);
+
+  --sea: #1db1bb;
+  --sea-deep: #0f7079;
+  --sea-glow: rgba(29, 177, 187, 0.18);
+
+  --gold: #d4a542;
+  --gold-soft: #efc97a;
+
+  --success: #4eb185;
+  --success-soft: #7ee2b4;
+  --warning: #f0a440;
+  --warning-soft: #ffbd6b;
+  --danger: #e35569;
+  --danger-soft: #ff8b99;
+  --info: #5fa8d3;
+  --info-soft: #85cfe5;
+
+  /* legacy aliases */
+  --bg: var(--bg-base);
+  --bg-soft: var(--bg-rise);
+  --panel: var(--bg-glass);
+  --panel-strong: var(--bg-glass-strong);
+  --accent: var(--ember);
+  --teal: var(--sea-deep);
+  --teal-bright: var(--sea);
+  --header-bg: rgba(4, 7, 11, 0.84);
+  --muted: var(--text-muted);
+}

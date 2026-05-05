@@ -1,0 +1,23 @@
+.page-wrap {
+  width: min(1340px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+.page-wide {
+  width: min(1640px, calc(100% - 2.5rem));
+  margin-inline: auto;
+}
+
+@media (max-width: 640px) {
+  .page-wrap, .page-wide {
+    width: min(100% - 1rem, 1340px);
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+.scroll-fade-x {
+  mask-image: linear-gradient(90deg, transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
+}

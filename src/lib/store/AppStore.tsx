@@ -36,17 +36,15 @@ function persist(state: AppState) {
 }
 
 export function AppStoreProvider({ children }: { children: ReactNode }) {
-  const [state, dispatch] = useReducer(reducer, initialState)
-
-  // hydrate from localStorage after mount (avoids SSR mismatch)
-  useEffect(() => {
+  // Lazy init: read localStorage synchronously on first render so AppShell
+  // sees the auth state immediately. Prevents the flicker where AppShell
+  // <Navigate to="/login" /> fires before useEffect can hydrate.
+  const [state, dispatch] = useReducer(reducer, initialState, (init) => {
     const persisted = loadPersisted()
-    if (persisted) {
-      dispatch({ type: 'state/replace', state: persisted })
-    }
-  }, [])
+    return persisted ?? init
+  })
 
-  // persist on every change
+  // Persist on every change
   useEffect(() => {
     persist(state)
   }, [state])

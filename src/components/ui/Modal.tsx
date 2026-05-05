@@ -29,7 +29,7 @@ export function Modal({ open, onClose, title, eyebrow, width = 540, children, fo
       <div className="scrim" onClick={onClose} />
       <div className="fixed inset-0 z-[81] flex items-center justify-center p-4">
         <div
-          className="modal-panel surface w-full overflow-hidden rounded-xl"
+          className="modal-panel w-full overflow-hidden rounded-xl border border-[var(--line-strong)] bg-[#0a1219] shadow-[0_28px_60px_-12px_rgba(0,0,0,0.7)]"
           style={{ maxWidth: width }}
           onClick={(e) => e.stopPropagation()}
         >

@@ -28,7 +28,7 @@ export function UserMenu() {
       </button>
 
       {open && (
-        <div className="surface scale-in absolute right-0 top-full z-40 mt-2 w-64 overflow-hidden rounded-xl">
+        <div className="scale-in absolute right-0 top-full z-50 mt-2 w-64 overflow-hidden rounded-xl border border-[var(--line-strong)] bg-[#0a1219] shadow-[0_18px_40px_-12px_rgba(0,0,0,0.7)]">
           <div className="flex items-center gap-3 border-b border-[var(--line)] p-3.5">
             <Avatar initials={user.initials} size={40} seed={user.id} />
             <div className="min-w-0">

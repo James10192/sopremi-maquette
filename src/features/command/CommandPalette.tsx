@@ -54,7 +54,7 @@ export function CommandPalette({ open, onClose }: { open: boolean; onClose: () =
     <div role="dialog" aria-modal="true" aria-label="Recherche globale">
       <div className="scrim" onClick={onClose} />
       <div className="fixed inset-x-0 top-[12vh] z-[81] flex justify-center px-4">
-        <div className="surface modal-panel flex w-full max-w-[640px] flex-col overflow-hidden rounded-2xl">
+        <div className="modal-panel flex w-full max-w-[640px] flex-col overflow-hidden rounded-2xl border border-[var(--line-strong)] bg-[#0a1219] shadow-[0_28px_60px_-12px_rgba(0,0,0,0.8)]">
           <div className="flex items-center gap-3 border-b border-[var(--line)] px-4 py-3">
             <Search className="h-4 w-4 text-[var(--text-muted)]" />
             <input

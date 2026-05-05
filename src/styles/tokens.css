@@ -1,7 +1,7 @@
 @theme {
-  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Fraunces", Georgia, serif;
-  --font-tech: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-tech: "IBM Plex Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 :root {

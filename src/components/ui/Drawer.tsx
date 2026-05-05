@@ -28,7 +28,7 @@ export function Drawer({ open, onClose, title, eyebrow, width = 480, children, f
     <div role="dialog" aria-modal="true" aria-label={title}>
       <div className="scrim" onClick={onClose} />
       <aside
-        className="drawer-panel surface fixed right-0 top-0 z-[81] flex h-full flex-col"
+        className="drawer-panel fixed right-0 top-0 z-[81] flex h-full flex-col border-l border-[var(--line-strong)] bg-[#0a1219] shadow-[-18px_0_40px_-12px_rgba(0,0,0,0.6)]"
         style={{ width: Math.min(width, typeof window !== 'undefined' ? window.innerWidth - 24 : width) }}
       >
         <header className="flex items-start justify-between gap-4 border-b border-[var(--line)] p-5">

@@ -90,7 +90,7 @@ export function Select<V extends string = string>({
       {open && (
         <div
           role="listbox"
-          className="surface scale-in absolute left-0 right-0 top-full z-30 mt-1.5 overflow-hidden rounded-xl p-1.5"
+          className="scale-in absolute left-0 right-0 top-full z-50 mt-1.5 overflow-hidden rounded-xl border border-[var(--line-strong)] bg-[#0a1219] p-1.5 shadow-[0_18px_40px_-12px_rgba(0,0,0,0.7)]"
         >
           <ul className="max-h-64 overflow-y-auto">
             {options.map((o, i) => {

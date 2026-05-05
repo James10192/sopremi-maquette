@@ -57,7 +57,7 @@ export function NotificationDropdown() {
       </button>
 
       {open && (
-        <div className="surface scale-in absolute right-0 top-full z-30 mt-2 w-[380px] overflow-hidden rounded-xl">
+        <div className="scale-in absolute right-0 top-full z-50 mt-2 w-[380px] overflow-hidden rounded-xl border border-[var(--line-strong)] bg-[#0a1219] shadow-[0_18px_40px_-12px_rgba(0,0,0,0.7)]">
           <header className="flex items-center justify-between gap-2 border-b border-[var(--line)] px-4 py-3">
             <div>
               <p className="eyebrow-muted m-0">Notifications</p>

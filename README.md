@@ -1,5 +1,14 @@
 # SOPREMI Maquette
 
+> 📌 **Encodage** — tous les fichiers source (`.ts`, `.tsx`, `.css`, `.md`, `.json`)
+> sont écrits en **UTF-8 sans BOM**. Le HTML servi par Vercel l'est aussi
+> (`Content-Type: text/html; charset=utf-8`, `Content-Language: fr`, balise
+> `<meta charset="utf-8">`). Si vous ouvrez un fichier dans un viewer Windows
+> qui présume cp1252 (Notepad ancien, PowerShell ≤ 5.1, Excel sur du HTML), les
+> accents apparaîtront déformés (`Rôle` devient `RÃ´le`). Ce n'est pas un bug du
+> code — c'est l'outil qui ne détecte pas l'encodage. Préférer un éditeur qui
+> lit l'UTF-8 (VS Code, Sublime, Notepad++, `cat` Linux/macOS).
+
 Application web de démonstration pour SOPREMI, pensée comme une maquette de présentation et non comme un produit connecté à la production.
 
 L'objectif du projet est de montrer à l'employeur à quoi pourrait ressembler une future application de pilotage interne pour l'entreprise:
